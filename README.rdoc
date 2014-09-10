@@ -1,3 +1,8 @@
+Domain :: Coding Dojo (cd) 
+Area of Study :: Ruby on Rails (ror)  Understanding Rails - Models (02model)
+Assignment :: Blogs/Posts/Messages #2 (04blog2)
+Repository :: cd-ror-02model-04blog2
+
 +-----------------+-------------------------------------------------------------+
 | Domain:         | Coding Dojo (cd)                                            |
 +-----------------+-------------------------------------------------------------+
@@ -10,9 +15,9 @@
 +-----------------+-------------------------------------------------------------+
 
 
-  ===============
+  ---------------
   #1: Start a new project
-  ===============
+  ---------------
 
   rails new blog-post-message2
   cd blog-post-message2
@@ -23,9 +28,9 @@
     gem 'hirb'                  # Using hirb (0.7.2)
   bundle install
 
-  ===============
+  ---------------
   #2: Create appropriate models/tables using "rails generate model", "rake db:create", and "rake db:migrate"
-  ===============
+  ---------------
 
   rails g model Blog name:string description:text 
   rails g model Post title:string content:text blog:references user:references 
@@ -86,9 +91,9 @@
     belongs_to :blog
   end
 
-  ===============
+  ---------------
   #3: Verify tables structures
-  ===============
+  ---------------
   rails c
   Hirb.enable()
 
@@ -127,9 +132,9 @@
   |    |         |         |            |            |
   +----+---------+---------+------------+------------+
 
-  ===============
+  ---------------
   #4.1: Be able to create 5 users
-  ===============
+  ---------------
 
   User.create(first_name: "User 1 first_name", last_name: "User 1 last_name", email_address: "user1@aol.com")
   User.create(first_name: "User 2 first_name", last_name: "User 2 last_name", email_address: "user2@aol.com")
@@ -148,9 +153,9 @@
   | 5  | User 5 first_name | User 5 last_name | user5@aol.com | 2014-08-26 13:24:58 UTC | 2014-08-26 13:24:58 UTC |
   +----+-------------------+------------------+---------------+-------------------------+-------------------------+
 
-  ===============
+  ---------------
   #4.2: Be able to create 5 blogs
-  ===============
+  ---------------
 
   Blog.create(name: "Blog 1 name", description: "Blog 1 description")
   Blog.create(name: "Blog 2 name", description: "Blog 2 description")
@@ -169,7 +174,7 @@
   | 5  | Blog 5 name | Blog 5 description | 2014-08-26 13:26:29 UTC | 2014-08-26 13:26:29 UTC |
   +----+-------------+--------------------+-------------------------+-------------------------+
 
-  ===============
+  ---------------
   #4.3: To add the first user to the last blog, you would do the following: 
         User.first.blogs = [Blog.last]
 
@@ -177,7 +182,7 @@
         User.first.blogs = [Blog.first, Blog.last]
 
         What would you do to add the second and third user to the second blog?
-  ===============
+  ---------------
 
 
   sql = "select * from owners"
@@ -271,10 +276,10 @@
   | 4  | 3       | 2       | 2014-08-26 15:37:07 UTC | 2014-08-26 15:37:07 UTC |
   +----+---------+---------+-------------------------+-------------------------+
    
-  ===============
+  ---------------
   #4.4: Have the first user create 3 posts, assign the first 2 posts to the first
         blog and the last post to the last blog
-  ===============
+  ---------------
 
   User.find(1).posts.create(title: "User 1 Post 1 title", content: "User 1 Post 1 content")
   User.find(1).posts.create(title: "User 1 Post 2 title", content: "User 1 Post 2 content")
@@ -306,10 +311,10 @@
   | 3  | User 1 Post 3 title | User 1 Post 3 content | 5       | 1       | 2014-08-26 15:49:29 UTC | 2014-08-26 15:50:43 UTC |
   +----+---------------------+-----------------------+---------+---------+-------------------------+-------------------------+
 
-  ===============
+  ---------------
   #4.5.1 You can create a new blog for the first user by calling: 
          "User.first.blogs.create(:name => "New Blog", :description => "New Description")". 
-  ===============
+  ---------------
 
   table    user_id   blog_id
   owners   1         6
@@ -339,10 +344,10 @@
   | 5  | 1       | 6       | 2014-08-26 16:05:44 UTC | 2014-08-26 16:05:44 UTC |
   +----+---------+---------+-------------------------+-------------------------+
 
-  ===============
+  ---------------
   #4.5.2: How would you create a new post that belongs to the second blog? 
           How would you indicate that this new post was created by the first user?
-  ===============
+  ---------------
   Blog.find(2).posts.create(title: "New Post", content: "Belongs to 2nd Blog, created by 1st User")
   Post.last.update(user_id: 1)
 
@@ -362,9 +367,9 @@
   | 4  | New Post            | Belongs to 2nd Blog, created by 1st User | 2       | 1       | 2014-08-26 16:45:27 UTC | 2014-08-26 20:57:20 UTC |
   +----+---------------------+------------------------------------------+---------+---------+-------------------------+-------------------------+
 
-  ===============
+  ---------------
   #4.6.1: Retrieve the user that owns the post id 1 
-  ===============
+  ---------------
 
   Post.find(1).user
   +----+-------------------+------------------+---------------+-------------------------+-------------------------+
@@ -373,9 +378,9 @@
   | 1  | User 1 first_name | User 1 last_name | user1@aol.com | 2014-08-26 13:24:58 UTC | 2014-08-26 13:24:58 UTC |
   +----+-------------------+------------------+---------------+-------------------------+-------------------------+
 
-  ===============
+  ---------------
   #4.7: Be able to create messages written by the second user in any post (i.e. 1st Blog 1st Post)
-  ===============
+  ---------------
 
   u = User.find(2).messages.create(author: "Ben Tiddle", message: "This is another great message")
   u.post = Blog.find(1).posts.first
@@ -386,20 +391,20 @@
   users = User.limit(2)
   users.last.blogs.first.posts.first.messages.create(:author => "a different author", :message => "A new message that is written by a different author").errors.full_messages
 
-  ===============
+  ---------------
   #4.8: Be able to retrieve all messages from any specific post (i.e. the first post)
-  ===============
+  ---------------
 
   Post.first.messages
 
-  ===============
+  ---------------
   #4.9: Be able to retrieve all the users that "own" any specific blog
-  ===============
+  ---------------
 
   Blog.first.users
 
-  ===============
+  ---------------
   The End!
-  ===============
+  ---------------
 
 
