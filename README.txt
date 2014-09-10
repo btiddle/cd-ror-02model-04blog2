@@ -1,11 +1,13 @@
-| | |
-|:---------------|:-------------------|
-|**Domain** | Coding Dojo (cd)|
-|**Areas of Study** | Ruby on Rails (ror)<br> Understanding Rails - Models (02model)|
-|**Assignment**| Blogs/Posts/Messages #2 (04blog2)|
-|**Repository** | cd-ror-02model-04blog2 |
-<br>
-<pre>
++-----------------+-------------------------------------------------------------+
+| Domain:         | Coding Dojo (cd)                                            |
++-----------------+-------------------------------------------------------------+
+| Area of Study:  | Ruby on Rails (ror)                                         |
+|                 | Understanding Rails - Models (02model)                      |
++-----------------+-------------------------------------------------------------+
+| Assignment:     | Blogs/Posts/Messages #2 (04blog2)                           |
++-----------------+-------------------------------------------------------------+
+| Repository:     | cd-ror-02model-04blog2                                      |
++-----------------+-------------------------------------------------------------+
 
 ===============
 #1: Start a new project
@@ -399,5 +401,4 @@ Blog.first.users
 The End!
 ===============
 
-</pre>
 
